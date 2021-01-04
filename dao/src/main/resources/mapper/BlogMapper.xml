@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ywxs.blog.dao.BlogMapper">
+    <select id="getBlogStatistics" resultType="com.ywxs.blog.common.entity.vo.BlogStatisticsVO">
+        select authorName,sum(readNum) readNum, sum(likeNum) likeNum
+        from blog
+        where authorId = #{adminId}
+    </select>
+</mapper>
