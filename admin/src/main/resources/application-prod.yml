@@ -1,0 +1,45 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: blog_admin
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://42.192.171.164:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 199875sr.
+    hikari:
+      minimum-idle: 5
+      idle-timeout: 30000
+      maximum-pool-size: 15
+      auto-commit: true
+      pool-name: MyHikariCP
+      max-lifetime: 120000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  servlet:
+    multipart:
+      max-file-size: 1073741824
+jwt:
+  config:
+    key: admin
+    ttl: 86400000
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapper/**/*.xml
+sms:
+  masterSecret: 1139ee0d0db61e71f0abbcb5
+  appKey: 02204727cb8b2fe4252eec54
+
+aliOss:
+  endpoint: oss-cn-beijing.aliyuncs.com
+  accessKeyId: LTAI4GH4c7Hsc9syvTAM8stV
+  accessKeySecret: 7sZsFDI1TQgMJQagFuUR37GkSAsYF5
+  signature: 一万小时科技
+  template: SMS_189215804
+  bucketName: srisgood
+  url: http://image.ywxskj.com/
+

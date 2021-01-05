@@ -26,10 +26,11 @@ public interface IAdminService extends IService<Admin> {
      Admin getInfo();
 
     /**
-     * 修改个人信息
+     * 修改密码
      */
-     void updateAdmin(Admin admin);
+     void updatePwd(Admin admin);
 
+     void updateAdmin(Admin admin);
 
      //前台获取图片信息
 

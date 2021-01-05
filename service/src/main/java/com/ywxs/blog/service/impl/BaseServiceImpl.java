@@ -19,7 +19,6 @@ import com.ywxs.blog.common.util.Validate;
 import com.ywxs.blog.service.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
@@ -49,7 +48,7 @@ public class BaseServiceImpl implements BaseService {
     @Value("${aliOss.url}")
     private String fileUrl;
 
-    private final RedisTemplate<String, String> redisTemplate;
+//    private final RedisTemplate<String, String> redisTemplate;
 
     @Override
     public List<String> upload(List<MultipartFile> files) throws IOException {
@@ -124,7 +123,7 @@ public class BaseServiceImpl implements BaseService {
 
     @Override
     public void sendSms(String phone) {
-        Assert.isTrue(Validate.checkMobileNumber(phone), "手机号格式有误！");
+        /*Assert.isTrue(Validate.checkMobileNumber(phone), "手机号格式有误！");
         String code = Convert.toStr(RandomUtil.randomInt(100000, 999999));
         redisTemplate.opsForValue().set("code_" + phone, code, 5, TimeUnit.MINUTES);
         JSONObject jsonObject = new JSONObject();
@@ -151,7 +150,7 @@ public class BaseServiceImpl implements BaseService {
             e.printStackTrace();
         } catch (ClientException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     @Override

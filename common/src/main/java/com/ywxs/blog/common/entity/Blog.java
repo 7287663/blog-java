@@ -43,7 +43,7 @@ public class Blog implements Serializable {
 
     @ApiModelProperty(value = "创建时间")
     @TableField("createTime")
-    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
 
     @ApiModelProperty(value = "阅读数量")
@@ -63,7 +63,7 @@ public class Blog implements Serializable {
 
     @ApiModelProperty(value = "修改时间")
     @TableField("updateTime")
-    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updateTime;
 
     @ApiModelProperty(value = "标签Id")

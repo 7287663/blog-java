@@ -5,5 +5,6 @@
         select authorName,sum(readNum) readNum, sum(likeNum) likeNum
         from blog
         where authorId = #{adminId}
+        GROUP BY authorName
     </select>
 </mapper>

@@ -58,13 +58,23 @@ public class AdminController {
      * 修改个人信息
      */
     @ApiOperation(value = "修改个人信息", notes = " ")
-    @PutMapping
+    @PutMapping("/info")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Result updateAdmin(@RequestBody Admin admin) {
         adminService.updateAdmin(admin);
         return Result.ok();
     }
 
+    /**
+     * 修改密码
+     */
+    @ApiOperation(value = "修改个人信息", notes = " ")
+    @PutMapping("/pwd")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public Result updatePwd(@RequestBody Admin admin) {
+        adminService.updatePwd(admin);
+        return Result.ok();
+    }
     /**
      * 查询博客列表
      *

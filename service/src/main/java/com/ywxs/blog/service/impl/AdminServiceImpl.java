@@ -51,9 +51,13 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     }
 
     @Override
-    public void updateAdmin(Admin admin) {
-        System.out.println(admin);
+    public void updatePwd(Admin admin) {
         admin.setPassword(encoder.encode(admin.getPassword()));
+        updateById(admin);
+    }
+
+    @Override
+    public void updateAdmin(Admin admin) {
         updateById(admin);
     }
 

@@ -40,6 +40,7 @@ public class UserController {
     @PostMapping("blog/list/{page}/{size}")
     public Result getBlogList(@PathVariable("page") int page, @PathVariable("size") int size, @RequestBody BlogVO vo) {
         IPage<Blog> res = blogService.getBlogList(page, size, vo);
+        System.out.println(res.getRecords());
         return Result.ok(res);
     }
 
