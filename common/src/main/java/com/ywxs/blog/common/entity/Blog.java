@@ -87,4 +87,8 @@ public class Blog implements Serializable {
     @TableField("coverUrl")
     private String coverUrl;
 
+    @ApiModelProperty(value = "收藏数")
+    @TableField("collectNum")
+    private  Integer collectNum;
+
 }

@@ -102,7 +102,7 @@ public class BaseServiceImpl implements BaseService {
     @Override
     public String upload(MultipartFile file) throws IOException {
         OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
-
+        System.out.println(file);
         String fileName = file.getOriginalFilename();
         String suffix = fileName.substring(fileName.lastIndexOf(".") + 1);
         String nextId = IdUtil.createSnowflake(1, 1).nextIdStr();

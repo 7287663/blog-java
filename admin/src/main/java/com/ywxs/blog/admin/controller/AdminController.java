@@ -44,7 +44,6 @@ public class AdminController {
 
     /**
      * 获取个人信息
-     *
      */
     @ApiOperation(value = "获取个人信息", notes = " ")
     @GetMapping
@@ -75,6 +74,7 @@ public class AdminController {
         adminService.updatePwd(admin);
         return Result.ok();
     }
+
     /**
      * 查询博客列表
      *
@@ -95,7 +95,6 @@ public class AdminController {
 
     /**
      * 添加博客
-     *
      */
     @ApiOperation(value = "添加博客", notes = " ")
     @PostMapping("blog")
@@ -115,7 +114,6 @@ public class AdminController {
 
     /**
      * 修改博客
-     *
      */
     @ApiOperation(value = "修改博客", notes = " ")
     @PutMapping("blog")
@@ -197,7 +195,6 @@ public class AdminController {
 
     /**
      * 添加评论
-     *
      */
     @ApiOperation(value = "添加评论", notes = " ")
     @PostMapping("comment")
@@ -292,10 +289,22 @@ public class AdminController {
 
     @ApiOperation(value = "删除图片", notes = " ")
     @DeleteMapping("/upload/{url}")
-    public Result deleteImg(@PathVariable  String url){
+    public Result deleteImg(@PathVariable String url) {
         System.out.println(url);
         baseService.deleteImg(url);
         return Result.ok();
+    }
+
+
+    /**
+     * 获取所有博客和当日新增博客所有人数和当日新增人数
+     */
+
+    @ApiOperation(value = "获取所有博客和当日新增博客所有人数和当日新增人数", notes = " ")
+    @GetMapping("/statistics")
+    public Result statistics() {
+        Map<String, Object> res = adminService.statistics();
+        return Result.ok(res);
     }
 
 }

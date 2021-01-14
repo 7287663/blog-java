@@ -11,27 +11,29 @@ import com.ywxs.blog.common.entity.vo.BlogVO;
  */
 public interface IBlogService extends IService<Blog> {
 
+    //总后台
+
     /**
-     *  查询博客列表
-     * @param vo
-     *     private String title;
-     *     private String authorName;
-     *     private Integer isTop;
-     *     private Integer isPutWay;
-     *     private Integer tagId;
-     *     private Integer hot;
+     * 查询博客列表
+     *
+     * @param vo private String title;
+     *           private String authorName;
+     *           private Integer isTop;
+     *           private Integer isPutWay;
+     *           private Integer tagId;
+     *           private Integer hot;
      */
     IPage<Blog> getBlogList(int page, int size, BlogVO vo);
 
     /**
      * 添加博客
-     * @param blog
+     *
      */
     void addBlog(Blog blog);
 
     /**
      * 修改博客
-     * @param blog
+     *
      */
     void updateBlog(Blog blog);
 
@@ -41,21 +43,28 @@ public interface IBlogService extends IService<Blog> {
     void putWay(Integer id);
 
     /**
-     *  增加访问量
+     * 增加访问量
+     *
      * @param id 1浏览 2点赞 3评论
      */
-    void addPageView(Integer id,Integer type);
+    void addPageView(Integer id, Integer type);
 
     /**
      * 减少点赞数和评论数
+     *
      * @param id 2点赞 3评论
      */
-    void subPageViewAndCommentNum(Integer id,Integer type);
+    void subPageViewAndCommentNum(Integer id, Integer type);
 
     /**
      * 置顶或取消置顶
      */
     void top(Integer id);
 
-    BlogStatisticsVO getBlogStatisticsById(Integer id);
+    /**
+     * 根据userId获取博客被点赞&&阅读数
+     *
+     * @param userId userId
+     */
+    BlogStatisticsVO getBlogStatisticsById(Integer userId);
 }

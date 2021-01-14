@@ -7,4 +7,12 @@
         where authorId = #{adminId}
         GROUP BY authorName
     </select>
+    <select id="getAllOrTodayBlog" resultType="java.lang.Integer">
+        select count(1) from blog
+        <where>
+            <if test="startTime != null">
+                AND createTime between #{startTime} and #{endTime}
+            </if>
+        </where>
+    </select>
 </mapper>

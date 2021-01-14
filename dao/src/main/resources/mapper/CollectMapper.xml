@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ywxs.blog.dao.CollectMapper">
+    <select id="getCollectBlogByUserId" resultType="com.ywxs.blog.common.entity.Blog">
+        select
+            b.id,
+            b.title,
+            b.authorName,
+            b.createTime,
+            b.tagName,
+            b.likeNum,
+            b.commentNum,
+            b.collectNum
+        from blog b inner join collect c
+                on b.id = c.blogId
+        where c.userId = #{userId} and c.type = #{type}
+    </select>
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ywxs.blog.dao.FriendMapper">
+    <select id="getFollowingOrFollower" resultType="com.ywxs.blog.common.entity.User">
+        SELECT u.id,
+               u.username,
+               u.via,
+               u.position,
+               u.introduction,
+               u.role,
+               u.level
+        from user u
+                     inner join friend f on
+        <choose>
+            <when test="type  == 1">
+                f.authorId = u.id
+            </when>
+            <otherwise>
+                f.followerId = u.id
+            </otherwise>
+        </choose>
+        <where>
+            <choose>
+                <when test="type  == 1">
+                    f.followerId = #{authorId}
+                </when>
+                <otherwise>
+                    f.authorId = #{authorId}
+                </otherwise>
+            </choose>
+        </where>
+        order by f.createTime desc
+    </select>
+</mapper>

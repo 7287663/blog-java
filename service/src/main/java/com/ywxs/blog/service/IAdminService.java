@@ -7,10 +7,6 @@ import com.ywxs.blog.common.entity.vo.AdminVO;
 import java.util.Map;
 
 /**
- * <p>
- *  服务类
- * </p>
- *
  * @since 2020-12-17
  */
 public interface IAdminService extends IService<Admin> {
@@ -21,7 +17,6 @@ public interface IAdminService extends IService<Admin> {
 
     /**
      * 获取个人信息
-     * @return
      */
      Admin getInfo();
 
@@ -30,7 +25,15 @@ public interface IAdminService extends IService<Admin> {
      */
      void updatePwd(Admin admin);
 
-     void updateAdmin(Admin admin);
+    /**
+     * 修改个人信息
+     */
+    void updateAdmin(Admin admin);
+
+    /**
+     * 获取所有博客和当日新增博客所有人数和当日新增人数
+     */
+    Map<String,Object> statistics();
 
      //前台获取图片信息
 
@@ -44,4 +47,5 @@ public interface IAdminService extends IService<Admin> {
      * 根据id获取头像和用户名
      */
      Admin getInfo(Integer id);
+
 }

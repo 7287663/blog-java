@@ -4,9 +4,12 @@ import cn.hutool.core.convert.Convert;
 import com.mysql.cj.protocol.x.StatementExecuteOk;
 import com.ywxs.blog.common.entity.Admin;
 import com.ywxs.blog.common.entity.vo.AdminVO;
+import com.ywxs.blog.common.util.DateUtils;
 import com.ywxs.blog.common.util.IdUtils;
 import com.ywxs.blog.common.util.JwtUtil;
 import com.ywxs.blog.dao.AdminMapper;
+import com.ywxs.blog.dao.BlogMapper;
+import com.ywxs.blog.dao.UserMapper;
 import com.ywxs.blog.service.IAdminService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,6 +31,8 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     private final AdminMapper adminMapper;
     private final JwtUtil jwtUtil;
     private final PasswordEncoder encoder;
+    private final BlogMapper blogMapper;
+    private final UserMapper userMapper;
 
     @Override
     public Map<String, Object> login(AdminVO vo) {
@@ -59,6 +65,24 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     @Override
     public void updateAdmin(Admin admin) {
         updateById(admin);
+    }
+
+    @Override
+    public Map<String, Object> statistics() {
+        Long aLong = DateUtils.todayZeroTimeMillis();
+        Long aLong1 = DateUtils.todayTwentyThreeTimeMillis();
+        Date startTime = new Date(aLong);
+        Date endTime = new Date(aLong1);
+        Integer allBlog = blogMapper.getAllOrTodayBlog(null, null);
+        Integer todayBlog = blogMapper.getAllOrTodayBlog(startTime, endTime);
+        Integer AllUser = userMapper.getAllNumOrTodayNum(startTime, endTime);
+        Integer todayUser = userMapper.getAllNumOrTodayNum(null, null);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("allBlog",allBlog);
+        map.put("todayBlog",todayBlog);
+        map.put("AllUser",AllUser);
+        map.put("todayUser",todayUser);
+        return map;
     }
 
     @Override
